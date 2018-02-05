@@ -1,0 +1,31 @@
+<form [formGroup]="form" novalidate>
+  <div fxLayout fxLayoutGap="12px" fxLayoutAlign="start center">
+    <mat-form-field fxFlex>
+      <mat-select placeholder="From" formControlName="departureFormControl">
+        <mat-option *ngFor="let city of departureCities" [value]="city">{{city}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('departureFormControl').hasError('required')">
+        Select departure
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex required>
+      <mat-select placeholder="To" formControlName="arrivalFormControl">
+        <mat-option value="warsow" *ngFor="let city of arrivalCities" [value]="city">{{city}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('arrivalFormControl').hasError('required')">
+        Select arrival
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout fxLayoutAlign="space-between start">
+    <mat-button-toggle-group #group="matButtonToggleGroup" (change)="sortChange$.next($event)">
+      <mat-button-toggle value="cheapest" checked="true">
+        Cheapest
+      </mat-button-toggle>
+      <mat-button-toggle value="fastest">
+        Fastest
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <button mat-button color="primary" (click)="onClear()" [disabled]="resultCount === 0">Reset</button>
+  </div>
+</form>

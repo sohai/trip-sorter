@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span>Trip sorter</span>
+</mat-toolbar>
+<div class="mat-elevation-z11 app-content">
+  <app-search-form [departureCities]="departureCitie$ | async" [arrivalCities]="arrivalCitie$ | async"
+                   [resultCount]="(result$ | async).length" (clear)="clearResult()" (search)="search($event)">
+  </app-search-form>
+  <app-result *ngIf="(result$ | async).length > 0" [items]="result$ | async"></app-result>
+</div>

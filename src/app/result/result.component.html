@@ -1,0 +1,21 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of items">
+    <mat-icon matListIcon>{{getTransportIcon(item.transport)}}</mat-icon>
+    <h3 matLine fxLayout fxLayoutAlign="space-between start">
+      <span>
+        {{item.departure}} > {{item.arrival}}
+      </span>
+      <span>
+        {{item.price}}€
+      </span>
+    </h3>
+    <p matLine>{{item.transport | titlecase}} {{item.reference}} for {{item.duration.h}}h{{item.duration.m}}m</p>
+  </mat-list-item>
+  <mat-list-item *ngIf="items.length > 0">
+    <h3 matLine fxLayout fxLayoutAlign="space-between start">
+      <span>Total</span>
+      <span>{{totalDuration.h}}h{{totalDuration.m}}m</span>
+      <span>{{totalPrice}}€</span>
+    </h3>
+  </mat-list-item>
+</mat-list>
